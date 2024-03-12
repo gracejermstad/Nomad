@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+<script>
+        // Function to update the visitor count
+        function updateVisitorCount() {
+            // Check if localStorage is supported
+            if (typeof(Storage) !== "undefined") {
+                // If count exists in localStorage, get it and increment by 1
+                if (localStorage.getItem("visitCount")) {
+                    var count = parseInt(localStorage.getItem("visitCount"));
+                    count++;
+                    localStorage.setItem("visitCount", count);
+                } else {
+                    // If count doesn't exist, set it to 1
+                    localStorage.setItem("visitCount", 1);
+                }
+                // Update the count on the page
+                document.getElementById("visitorCount").innerText = localStorage.getItem("visitCount");
+            } else {
+                // If localStorage is not supported, display an error message
+                document.getElementById("visitorCount").innerText = "Sorry, your browser does not support local storage.";
+            }
+        }
+
+        // Call the updateVisitorCount function when the page loads
+        window.onload = function() {
+            updateVisitorCount();
+        };
+    </script>
+</head>
+<body>
+    <div>
+        <p>Total number of visitors: <span id="visitorCount">0</span></p>
+    </div>
+</body>
+</html>
